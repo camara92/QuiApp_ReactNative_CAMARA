@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 const Quiz = ({navigation}) => {
@@ -25,6 +25,7 @@ const Quiz = ({navigation}) => {
 
   }
   return (
+    <ScrollView>
     <View style={styles.container}>
       {
         questions && (
@@ -53,9 +54,22 @@ const Quiz = ({navigation}) => {
         <TouchableOpacity style={styles.bouton}>
           <Text style={styles.boutonText}>Skip</Text>
         </TouchableOpacity>
+        {/* conditon si fin de question bouton disable ou invisible  */}
+        {
+          ques !==9 &&
+       
         <TouchableOpacity style={styles.bouton} onPress ={ handlenextPress}>
           <Text style={styles.boutonText}>Next</Text>
         </TouchableOpacity>
+}
+
+{
+          ques ===9 &&
+       
+        <TouchableOpacity style={styles.bouton} onPress ={ null }>
+          <Text style={styles.boutonText}>Résultats </Text>
+        </TouchableOpacity>
+}
         {/* <TouchableOpacity onPress={()=>navigation.navigate("Home")}
         style={styles.bouton}
         >
@@ -65,6 +79,7 @@ const Quiz = ({navigation}) => {
        </View>
 )}
     </View>
+    </ScrollView>
   )
 }
 
@@ -85,7 +100,7 @@ const styles = StyleSheet.create({
   }, options:{
     marginVertical:16, 
     felx: 1, 
-    height: '50%'
+    // height: '100%'
   }, 
   bottom:{
     marginBottom:12,

@@ -26,7 +26,7 @@ export default App
 
 const styles = StyleSheet.create({
   container:{
-    paddingTop : 30, 
+    paddingTop : 15, 
     paddingHorizontal :16
 
 
