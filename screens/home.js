@@ -11,8 +11,8 @@ const Home = ({navigation}) => {
         style={styles.banner} 
        resizeMode ="contain" />
       </View>
-      <TouchableOpacity onPress={()=>navigation.navigate("Quiz")}>
-        <Text>Start Go </Text>
+      <TouchableOpacity onPress={()=>navigation.navigate("Quiz")} style={styles.bouton}>
+        <Text style={styles.start}>Start Go </Text>
       </TouchableOpacity>
 
     </View>
@@ -23,6 +23,9 @@ export default Home
 
 const styles = StyleSheet.create({
     container:{
+      paddingTop :20, 
+      paddingHorizontal :20, 
+      height:'100%'
          
     },
     banner:{
@@ -34,6 +37,23 @@ const styles = StyleSheet.create({
     }, 
     bannerContainer:{
         justifyContent: "center", 
-        alignItems : "center"
+        alignItems : "center", 
+        flex:1,
+
+    }, 
+    bouton:{
+      width:"100%", 
+      backgroundColor: "#1A759F", 
+      padding: 16 , 
+      borderRadius: 16, 
+      alignItems:'center', 
+      marginBottom: 20
+
+    }, 
+    start:{
+      fontSize: 24, 
+      fontWeight :'600', 
+      color:'white', 
+
     }
 })

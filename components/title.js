@@ -14,9 +14,15 @@ export default Title
 const styles = StyleSheet.create({
     titleText:{
         textAlign:"center",
-        fontWeight : "bold", 
-        fontSize : 25,
+        fontWeight : "600", 
+        fontSize : 35,
         color: "red",
         
+    }, 
+    Containertitle:{
+      paddingVertical :16,
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      
     }
 })
