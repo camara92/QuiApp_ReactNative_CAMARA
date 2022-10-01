@@ -1,7 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Quiz = ({navigation}) => {
+  const [question, setQuestion] = useState(); 
+
+  const getQuiz= async()=>{
+    // utilisqation des url pour la regeneration des questions avec opentdb 
+    const url = "https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=multiple"; 
+    const res = await fetch(url); 
+    //console.log(res);
+    const data = await res.json(); 
+    // console.log(data.results[0]); 
+    setQuestion(data.results); 
+  }
+  // useeffect on project : 
+  useEffect (()=>{
+    getQuiz()
+  }, [])
   return (
     <View style={styles.container}>
       <View style={styles.top}>
