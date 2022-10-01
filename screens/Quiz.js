@@ -2,7 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 const Quiz = ({navigation}) => {
-  const [question, setQuestion] = useState(); 
+  const [questions, setQuestion] = useState(); 
+  const [ques, setQues] = useState(0); 
 
   const getQuiz= async()=>{
     // utilisqation des url pour la regeneration des questions avec opentdb 
@@ -19,6 +20,9 @@ const Quiz = ({navigation}) => {
   }, [])
   return (
     <View style={styles.container}>
+      {
+        questions && (
+     <View style={styles.parent}>
       <View style={styles.top}>
         <Text style={styles.question}>Imagine this is a really cool question </Text>
       </View>
@@ -52,6 +56,8 @@ const Quiz = ({navigation}) => {
           <Text style={styles.boutonText}>END </Text>
         </TouchableOpacity> */}
       </View>
+       </View>
+)}
     </View>
   )
 }
@@ -115,5 +121,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius:12,
 
+  }, 
+  parent:{
+    height:'100%'
   }
 })
