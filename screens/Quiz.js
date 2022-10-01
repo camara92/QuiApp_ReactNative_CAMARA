@@ -11,20 +11,26 @@ const Quiz = ({navigation}) => {
     const res = await fetch(url); 
     //console.log(res);
     const data = await res.json(); 
-    // console.log(data.results[0]); 
+     console.log(data.results[0]); 
     setQuestion(data.results); 
   }
-  // useeffect on project : 
+  // useeffect on project : 0
   useEffect (()=>{
     getQuiz()
   }, [])
+
+  // bouton next et skip 
+  const handlenextPress =()=>{
+    setQues(ques + 1); 
+
+  }
   return (
     <View style={styles.container}>
       {
         questions && (
      <View style={styles.parent}>
       <View style={styles.top}>
-        <Text style={styles.question}>Imagine this is a really cool question </Text>
+        <Text style={styles.question}>Q. {questions[ques].question }</Text>
       </View>
       <View style={styles.options}>
         <TouchableOpacity style={styles.optionButtom}>
@@ -47,7 +53,7 @@ const Quiz = ({navigation}) => {
         <TouchableOpacity style={styles.bouton}>
           <Text style={styles.boutonText}>Skip</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bouton}>
+        <TouchableOpacity style={styles.bouton} onPress ={ handlenextPress}>
           <Text style={styles.boutonText}>Next</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity onPress={()=>navigation.navigate("Home")}
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
   }, options:{
     marginVertical:16, 
     felx: 1, 
-    height: '65%'
+    height: '50%'
   }, 
   bottom:{
     marginBottom:12,
