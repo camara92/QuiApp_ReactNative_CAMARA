@@ -12,7 +12,7 @@ const Home = ({navigation}) => {
        resizeMode ="contain" />
       </View>
       <TouchableOpacity onPress={()=>navigation.navigate("Quiz")} style={styles.bouton}>
-        <Text style={styles.start}>Start Go </Text>
+        <Text style={styles.boutonText}>Start Go </Text>
       </TouchableOpacity>
 
     </View>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     banner:{
         height :300, 
         width: "100%", 
-        backgroundColor: "white"
+        backgroundColor: "white", 
+       
       
 
     }, 
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
       marginBottom: 20
 
     }, 
-    start:{
+    boutonText:{
       fontSize: 24, 
       fontWeight :'600', 
       color:'white', 
