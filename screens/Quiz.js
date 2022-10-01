@@ -5,23 +5,23 @@ const Quiz = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Text>Imagine this is a really cool question </Text>
+        <Text style={styles.question}>Imagine this is a really cool question </Text>
       </View>
       <View style={styles.options}>
-        <TouchableOpacity>
-          <Text>Cool option 1</Text>
+        <TouchableOpacity style={styles.optionButtom}>
+          <Text style={styles.option}>Cool option 1</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Cool option 2</Text>
+        <TouchableOpacity style={styles.optionButtom}>
+          <Text style={styles.option}>Cool option 2</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Cool option 3</Text>
+          <TouchableOpacity style={styles.optionButtom}>
+            <Text style={styles.option}>Cool option 3</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-          <Text>Cool option 1</Text>
+          <TouchableOpacity style={styles.optionButtom}>
+          <Text style={styles.option}>Cool option 4 </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Cool option 1</Text>
+          <TouchableOpacity style={styles.optionButtom}>
+            <Text style={styles.option}>Cool option 5</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.bottom}>
@@ -31,8 +31,10 @@ const Quiz = ({navigation}) => {
         <TouchableOpacity style={styles.bouton}>
           <Text style={styles.boutonText}>Next</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity onPress={()=>navigation.navigate("Result")} >
-          <Text>END </Text>
+        {/* <TouchableOpacity onPress={()=>navigation.navigate("Home")}
+        style={styles.bouton}
+        >
+          <Text style={styles.boutonText}>END </Text>
         </TouchableOpacity> */}
       </View>
     </View>
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   }, options:{
     marginVertical:16, 
     felx: 1, 
-    height: '75%'
+    height: '65%'
   }, 
   bottom:{
     marginBottom:12,
@@ -68,15 +70,35 @@ const styles = StyleSheet.create({
     
     backgroundColor: "#1A759F", 
     padding: 12 , 
-    borderRadius: 16, 
+    paddingHorizontal:16,
+    borderRadius: 10, 
     alignItems:'center', 
     marginBottom: 20
 
   },
   boutonText:{
-    fontSize: 24, 
+    fontSize: 18, 
     fontWeight :'600', 
     color:'white', 
+
+  }, 
+  question:{
+    fontSize:28,
+
+  }, 
+  option:{
+    fontSize: 18,
+    fontWeight:'500', 
+    color: 'white', 
+
+
+  }, 
+  optionButtom:{
+    paddingVertical: 12, 
+    marginVertical:6,
+    backgroundColor: '#34A0A4',
+    paddingHorizontal: 12,
+    borderRadius:12,
 
   }
 })
