@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 const  shuffleArray=(array)=> {
@@ -12,8 +12,10 @@ const Quiz = ({navigation}) => {
   const [ques, setQues] = useState(0); 
   const  [Options , setOptions] = useState([]); 
   const [score, setScore] = useState(0);
+  const [isloading, setisLoading] = useState(false);
 
   const getQuiz= async()=>{
+    setisLoading(true); 
     // utilisqation des url pour la regeneration des questions avec opentdb 
     const url = "https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=multiple&encode=url3986"; 
     const res = await fetch(url); 
@@ -22,6 +24,7 @@ const Quiz = ({navigation}) => {
      //console.log(data.results[0]); 
     setQuestion(data.results); 
    setOptions( generateOptionsAndShuffle(data.results[0]));
+   setisLoading(false); 
   }
   // useeffect on project : 0
   useEffect (()=>{
@@ -50,8 +53,11 @@ const Quiz = ({navigation}) => {
 if(ques !==9){
   setQues(ques + 1); 
   setOptions(generateOptionsAndShuffle(questions[ques +1]))
+  // console.log(_option===questions[ques].correct_answer)
 }
-    // console.log(_option===questions[ques].correct_answer)
+if(ques===9){
+  handleShowResult();
+}
 
   }
   const handleShowResult =()=>{
@@ -63,6 +69,16 @@ if(ques !==9){
     <ScrollView>
     <View style={styles.container}>
       {
+        isloading ?<View style={styles.loading}>
+          <Text style={styles.loadingText}> Loading... </Text>
+          <View style={styles.bannerContainer}>
+      {/* <Image source={require('../components/assets/images/results.jpg')} */}
+      <Image source={{uri: 'https://media2.giphy.com/media/KG4PMQ0jyimywxNt8i/giphy.gif?cid=ecf05e47nvt4xd2bot4fxsyj6knnxbo3tecukts5tni0phfo&rid=giphy.gif&ct=g'}}
+      // https://cdna.iconscout.com/img/full-screen.0cca4a3.svg
+      style={styles.banner} 
+     resizeMode ="contain" />
+    </View>
+        </View>: 
         questions && (
      <View style={styles.parent}>
       <View style={styles.top}>
@@ -87,9 +103,9 @@ if(ques !==9){
         </TouchableOpacity> */}
       </View>
       <View style={styles.bottom}>
-        <TouchableOpacity style={styles.bouton}>
+        {/* <TouchableOpacity style={styles.bouton}>
           <Text style={styles.boutonText}>Previous</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         {
           ques !==9 &&
         <TouchableOpacity style={styles.bouton} onPress ={ handlenextPress}>
@@ -123,8 +139,9 @@ const styles = StyleSheet.create({
     // height: '100%'
     paddingTop :20, 
     paddingHorizontal :20, 
-    // flex :1
-    // height:'100%'
+    backgroundColor: 'yellow',
+    flex :1,
+    height:'100%'
 
   },
   top:{
@@ -190,5 +207,31 @@ const styles = StyleSheet.create({
   parent:{
     flex:1,
     height:'100%'
-  }
+  }, 
+  loading:{
+    display:'flex',
+    justifyContent:'center', 
+    alignItems:'center'
+
+  },
+  loadingText:{
+    fontSize:32,
+    fontWeight:'700'
+  },
+  banner:{
+    height :300, 
+    width: 300, 
+    backgroundColor: "white", 
+    borderRadius: 300
+   
+  
+
+}, 
+bannerContainer:{
+  justifyContent: "center", 
+  alignItems : "center", 
+  paddingTop:35,
+  flex:1,
+
+},
 })
